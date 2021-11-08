@@ -22,11 +22,18 @@
   </div>
 
   <div class="field">
+    <%= form.label :image %>
+    <%= form.file_field :image %>
+  </div>
+
+  <div class="field">
     <%= form.label :price %>
     <%= form.text_field :price %>
   </div>
 
-  <div class="field">
+  <%
+=begin%>
+ <div class="field">
     <%= form.label :dairy_free %>
     <%= form.check_box :dairy_free %>
   </div>
@@ -59,11 +66,18 @@
   <div class="field">
     <%= form.label :catering %>
     <%= form.check_box :catering %>
-  </div>
+  </div> 
+<%
+=end%>
 
   <div class="field">
     <%= form.label :featured %>
     <%= form.check_box :featured %>
+  </div>
+
+  <div class="field">
+    <%= form.label :category %>
+    <%= form.select :category_id, options_from_collection_for_select(Category.all, :id, :name, @product.category) %>
   </div>
 
   <div class="actions">

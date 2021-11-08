@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :categories
   resources :products
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks'}
   devise_scope :user do
@@ -14,8 +15,9 @@ Rails.application.routes.draw do
   end
 
   get 'about', to: 'home#about'
+  get 'cart', to: 'home#cart'
   get 'contact', to: 'home#contact'
-  get 'order', to: 'home#order'
+  get 'menu', to: 'products#index'
   get 'catering', to: 'home#catering'
 
   root 'home#index'
