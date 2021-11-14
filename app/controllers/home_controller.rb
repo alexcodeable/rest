@@ -14,8 +14,10 @@ class HomeController < ApplicationController
     @pageinfo = 'Get in touch with Us. '
   end
 
-  def cart
-    @pageinfo = 'Cart Items'
+  def notifications
+  end
+
+  def orders
   end
 
   def catering

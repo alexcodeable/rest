@@ -5,20 +5,19 @@ class ProductsController < ApplicationController
 
   # GET /products or /products.json
   def index
-    @q = Product.ransack(params[:q])
-    if @q.blank?
-      'nothing here...'
-    else
-      @products = @q.result.includes(:category).to_a.uniq
-    end
-
     @page = 'menu'
     @pageinfo = 'Order your favourite food from our list of menu'
-    # @products = Product.all
+    
+    @q = Product.ransack(params[:q])
+    @products = @q.result.includes(:category).to_a.uniq
+    
+    @order_item = current_order.order_items.new
   end
 
   # GET /products/1 or /products/1.json
   def show
+    @order_item = current_order.order_items.new
+
   end
 
   # GET /products/new

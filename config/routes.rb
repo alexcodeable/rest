@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :order_items
+  get 'cart', to: 'cart#show'
   resources :categories
   resources :products
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks'}
@@ -10,12 +12,13 @@ Rails.application.routes.draw do
     post 'sign_in', to: 'devise/sessions#create'
     get 'sign_out', to: 'devise/sessions#destroy', as: :sign_out
     delete 'sign_out', to: 'devise/sessions#destroy'
-    get 'profile/edit', to: 'devise/registrations#edit'
+    get 'account-settings', to: 'devise/registrations#edit'
     get 'forget-pass', to: 'devise/passwords#new'
   end
 
   get 'about', to: 'home#about'
-  get 'cart', to: 'home#cart'
+  get 'orders', to: 'home#orders'
+  get 'notifications', to: 'home#notifications'
   get 'contact', to: 'home#contact'
   get 'menu', to: 'products#index'
   get 'catering', to: 'home#catering'

@@ -10,6 +10,7 @@ import "channels"
 import "bootstrap"
 
 require("./scripts")
+require("./datatable")
 
 Rails.start()
 Turbolinks.start()

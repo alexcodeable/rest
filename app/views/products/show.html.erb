@@ -10,9 +10,11 @@
 <section class="py-5">
     <div class="container px-4 px-lg-5 my-5">
         <div class="row gx-4 gx-lg-5 align-items-center">
-            <div class="col-md-6"><%= image_tag(@product.image, size: "600x600", class: "card-img-top mb-5 mb-md-0") if @product.image.attached? %></div>
+            <div class="col-md-6"><%= image_tag(@product.image, class: "card-img-top mb-5 mb-md-0") if @product.image.attached? %></div>
             <div class="col-md-6">
+            <!---
                 <div class="small mb-1">SKU: BST-498</div>
+            --->
                 <h1 class="display-5 fw-bolder"><%= @product.name %></h1>
                 <div class="fs-5 mb-2">
 <!-- Related items section
@@ -21,13 +23,17 @@
                     <span>$<%= @product.price %></span>
                 </div>
                 <p class="lead"><%= @product.description %></p>
+                
+                <%= form_with model: @order_item, local: false do |f| %>
                 <div class="d-flex">
-                    <input class="form-control text-center me-2" id="inputQuantity" type="number" value="1" style="max-width: 4rem" />
-                    <button class="btn btn-outline-dark flex-shrink-0" type="button">
+                <%= f.hidden_field :product_id, value: @product.id %>
+                <%= f.number_field :quantity, value: 1, min: 1, class: "form-control text-center me-2", style: "max-width: 5rem" %>
+                <%= f.submit 'Add to Cart', class: "btn btn-outline-dark flex-shrink-0" do %>
                         <i class="bi-cart-fill me-1"></i>
-                        Add to cart
-                    </button>
+
+                <% end %>
                 </div>
+                <% end %> 
             </div>
         </div>
     </div>

@@ -1,0 +1,14 @@
+<ul class="nav  flex-column">
+  <li class="nav-item">
+    <a class="nav-link <%= 'activess' if request.path == account_settings_path %> "  aria-current="page" href="/account-settings">Personal Info</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" aria-current="page" href="#">Link</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link <%= 'activess' if request.path == notifications_path %>" aria-current="page" href="/notifications">Notifications</a>
+  </li>
+  <li class="nav-item ">
+    <a class="nav-link <%= 'activess' if request.path == orders_path %>" aria-current="page" href="/orders" ">My Orders</a>
+  </li>
+</ul>

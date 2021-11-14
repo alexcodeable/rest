@@ -1,0 +1,58 @@
+<div class="container mt-5 mb-5">
+<table class="table table-borderless table-responsive">
+  
+<% @cart_items.each do |item| %>
+  <tbody>
+    <tr>
+    
+      <td>
+<%= image_tag(item.product.image, size: "50x50", class: "rounded ") %>
+      </td>
+      <td>
+<h5><%= item.product.name %></h5>
+      </td>
+      <td>
+$<%= item.product.price %> 
+      </td>
+      <td>
+<%= form_for item, remote: true do |f| %>
+<%= f.hidden_field :product_id, value: item.product.id %>
+  <div class="d-flex">
+    x <%= f.number_field :quantity, value: item.quantity.to_i, style: "max-width: 4rem", class: "form-control form-control-sm text-center me-2 ms-1" %>
+    <%= f.submit 'Update Cart', class: "btn btn-outline-dark btn-sm flex-shrink-0" %>
+      </td>
+      <td>
+    <%= link_to item, method: :delete, remote: true, data: {confirm: "Do you want to remove #{item.product.name} from your cart?"} do %>
+        <i class="bi bi-trash"></i>
+    <% end %>
+      </td>
+    </div>
+<% end %>
+      <td>
+<h6>subtotal: $<%= item.total %></h6>
+      </td>
+<% end %>
+    </tr>
+
+<% if current_order.subtotal == 0 %>
+  <center class="justify-content-center">
+    <%= image_tag("empty_cart.jpeg", class: "img-fluid mt-5", size: "300x300") %>
+    <div class="text-center">
+    Your cart is currently empty!
+    </div>
+    <div class="text-center"><a class="btn btn-outline-dark mt-2 mb-4" href="/menu">continue shopping</a></div>
+  </center>
+<% else %>
+<tr>
+<td colspan="6">
+  <h4 class="float-end">Total Order of   <span class="fs-3 ms-3"> $<%= current_order.subtotal %></span</h4>
+</td>
+</tr>
+  </tbody>
+
+<% end %>
+
+ 
+
+</table>
+</div>
