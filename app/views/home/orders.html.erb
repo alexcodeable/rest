@@ -2,27 +2,163 @@
 <header class="bg-dark py-5 mt-5">
   <div class="container px-4 px-lg-5 my-5">
     <div class="text-center text-white">
-      <h1 class="display-4 fw-bolder">Orders</h1>
+      <h1 class="display-4 fw-bolder">My Orders</h1>
     </div>
   </div>
 </header>
 <!-- Section-->
 <div class="container">
   <div class="row mt-5 mb-5">
-    <div class="col-3">
-      <div class="card bg-light">
+    <div class="col-lg-3 col-md-3 col-sm-12">
+      <%= render "shared/side" %>
+    </div>
+
+    <div class="col-lg-9 col-md-9 col-sm-12">
+      <div class="card bg-light shadow p-3 mb-5 bg-body rounded">
+        <div class="card-header rounded">Active Order(s)</div>
         <div class="card-body">
-          <%= render "shared/side" %>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>REFERENCE</th>
+                <th>STATUS</th>
+                <th>AMOUNT</th>
+                <th>DATE</th>
+                <th>INVOICE</th>
+                <th style=""></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th><a href="#">#3682303</a></th>
+                <td><span class="badge bg-warning">Processing</span></td>
+                <td>$82</td>
+                <td>01/06/21</td>
+                <td><a class="btn btn-sm btn-outline-dark disabled "  href="javascript:void(0);" ><i class="bi bi-file-earmark-arrow-down-fill"></i> pdf</a></td>
+                <td><a class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-eye-fill"></i> Quick view</a></td>
+              </tr>
+             
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card bg-light shadow p-3 mb-5 bg-body rounded">
+        <div class="card-header rounded">Order History</div>
+        <div class="card-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>REFERENCE</th>
+                <th>STATUS</th>
+                <th>AMOUNT</th>
+                <th>DATE</th>
+                <th>INVOICE</th>
+                <th style=""></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th><a href="#">#3682303</a></th>
+                <td><span class="badge bg-danger">Failed</span></td>
+                <td>$82</td>
+                <td>01/06/21</td>
+                <td><a class="btn btn-sm btn-outline-dark" href="/invoice"><i class="bi bi-file-earmark-arrow-down-fill"></i> pdf</a></td>
+                <td><a class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-eye-fill"></i> Quick view</a></td>
+              </tr>
+              <tr>
+                <th><a href="#">#4384363</a></th>
+                <td><span class="badge bg-success">Success</span></td>
+                <td>$93</td>
+                <td>08/06/21</td>
+                <td><a class="btn btn-sm btn-outline-dark" href="/invoice"><i class="bi bi-file-earmark-arrow-down-fill"></i> pdf</a></td>
+                <td><a class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-eye-fill"></i> Quick view</a></td>
+              </tr>
+              <tr>
+                <th><a href="#">#1682309</a></th>
+                <td ><span class="badge bg-success">Success</span></td>
+                <td>$18</td>
+                <td>22/06/21</td>
+                <td><a class="btn btn-sm btn-outline-dark" href="/invoice"><i class="bi bi-file-earmark-arrow-down-fill"></i> pdf</a></td>
+                <td><a class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-eye-fill"></i> Quick view</a></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
+  </div>
+</div>
 
-    <div class="col-9">
-      <div class="card bg-light">
-        <div class="card-body">
-          hello info
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered ">
+    <div class="modal-content">
+      
+      <div class="modal-top-cover-avatar">
+        <button type="button" class="btn-close1 float-end mt-3 me-3" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-      </div>
+      <div class="modal-body pt-3 pb-sm-5 px-sm-5">
+          <div class="text-center mb-5">
+          <i class="bi bi-fan fs-1"></i>
+            <h3 class="mb-1">Invoice from Fav's</h3>
+            <span class="d-block">Invoice #3682303</span>
+          </div>
+
+          <div class="row mb-6">
+            <div class="col-md-4 mb-3 mb-md-0">
+              <small class="text-cap">Amount paid:</small>
+              <span class="text-dark">$316.8</span>
+            </div>
+
+            <div class="col-md-4 mb-3 mb-md-0">
+              <small class="text-cap">Date paid:</small>
+              <span class="text-dark">April 22, 2020</span>
+            </div>
+
+            <div class="col-md-4">
+              <small class="text-cap">Payment method:</small>
+              <div class="d-flex align-items-center">
+              <i class="bi bi-credit-card"></i>
+                <span class="text-dark ms-1">&bull;&bull;&bull;&bull; 4242</span>
+              </div>
+            </div>
+          </div>
+
+          <small class="text-cap mb-2">Summary</small>
+
+          <ul class="list-group mb-4">
+            <li class="list-group-item text-dark">
+              <div class="d-flex justify-content-between align-items-center">
+                <span>Payment to Front</span>
+                <span>$264.00</span>
+              </div>
+            </li>
+            <li class="list-group-item text-dark">
+              <div class="d-flex justify-content-between align-items-center">
+                <span>Delivery</span>
+                <span>$2.8</span>
+              </div>
+            </li>
+            <li class="list-group-item list-group-item-light text-dark">
+              <div class="d-flex justify-content-between align-items-center">
+                <strong>Amount paid</strong>
+                <strong>$316.8</strong>
+              </div>
+            </li>
+          </ul>
+
+          <div class="d-flex justify-content-end">
+            <a class="btn btn-sm btn-outline-dark" href="#"><i class="bi bi-file-earmark-arrow-down-fill"></i> pdf</a>
+            <span class="mx-1"></span>
+            <a class="btn btn-sm btn-outline-dark" href="/invoice"><i class="bi bi-printer-fill"></i> Print Details</a>
+          </div>
+
+          <hr class="my-5">
+
+          <p class="modal-footer-text">If you have any questions, please contact us at <a href="mailto:example@gmail.com" class="text-muted">example@gmail.com</a> or call at <a class="text-nowrap text-muted" href="#">+1 898 34-5492</a></p>
+        </div>
     </div>
   </div>
 </div>

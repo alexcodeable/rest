@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  before_action :authenticate_user!, only: %i{notifications orders}
   def index
     @page = 'home'
     @pageinfo = "Welcome to fav's Restaurant"

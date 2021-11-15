@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get 'orders', to: 'home#orders'
   get 'notifications', to: 'home#notifications'
   get 'contact', to: 'home#contact'
+  get 'invoice', to: 'products#invoice'
   get 'menu', to: 'products#index'
   get 'catering', to: 'home#catering'
 

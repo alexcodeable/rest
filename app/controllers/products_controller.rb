@@ -3,6 +3,9 @@ class ProductsController < ApplicationController
   before_action :set_cats
 
 
+  def invoice
+    
+  end
   # GET /products or /products.json
   def index
     @page = 'menu'
