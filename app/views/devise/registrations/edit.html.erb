@@ -60,14 +60,7 @@
             <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
           </div>
           
-          <div class="form-group mt-3">
-            <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-            <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control" %>
-          </div>
-
-            <div class="form-group mt-2 float-end">
-              <%= f.submit "Update", class: "btn btn-dark" %>
-            </div>
+          
         </div>
       </div>
       <div class="card bg-light shadow p-3 mb-5 bg-body rounded">
@@ -103,6 +96,7 @@
 
         </div>
       </div>
+<% end %>
       <div class="card bg-light shadow p-3 mb-5 bg-body rounded">
         <div class="card-body">
           <h3 class="text-danger">Cancel my account</h3>
@@ -115,6 +109,5 @@
   </div>
 </div>
 
-<% end %>
 
 
