@@ -9,7 +9,9 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "bootstrap"
 
-require("./scripts")
+require("./volt")
+// require("./chart")
+// require("./chart-plugin")
 
 Rails.start()
 Turbolinks.start()

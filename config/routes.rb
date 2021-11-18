@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  scope "dashboard" do
+    get 'stats', to: 'dash#index'
+    get 'customers', to: 'dash#customers'
+    get 'notice', to: 'dash#notice'
+    get 'transactions', to: 'dash#transactions'
+  end
   resources :order_items
   get 'cart', to: 'cart#show'
   resources :categories
