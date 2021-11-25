@@ -3,8 +3,7 @@
 <%= render "shared/db-side" %>
 <main class="content">
     <%= render "shared/db-nav" %>
-
- <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
           <div class="d-block mb-4 mb-md-0">
               <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
                   <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
@@ -13,51 +12,63 @@
                               <svg class="icon icon-xxs" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
                           </a>
                       </li>
-                      <li class="breadcrumb-item active" aria-current="page">Categories</li>
+                      <li class="breadcrumb-item active" aria-current="page">Products</li>
                   </ol>
               </nav>
-              <h2 class="h4">All Categories</h2>
+              <h2 class="h4">All Products</h2>
           </div>
           <div class="btn-toolbar mb-2 mb-md-0">
 
-        <%= link_to 'New Category', new_category_path, class: "btn btn-primary " %>
+          <a href="/dashboard/add-product"><button class="btn btn-primary">Add Product</button> </a>
               
           </div>
       </div>
 
 
-<div class="card card-body shadow border-0 table-wrapper table-responsive">
+      <div class="card card-body shadow border-0 table-wrapper table-responsive">
         
         <table class="table user-table table-hover align-items-center">
           <thead>
             <tr>
-              <th class="border-bottom">Category Name</th>
-              <th class="border-bottom">Created</th>
+              <th class="border-bottom">Product</th>
+              <th class="border-bottom">Description</th>
+              <th class="border-bottom">Price</th>
               <th class="border-bottom">Updated</th>
+              <th class="border-bottom">Status</th>
               <th class="border-bottom">Action</th>
             </tr>
           </thead>
           <tbody>
-            <% @categories.each do |category| %>
+            <% @products.each do |product| %>
             <tr>
               <td>
+                <span  class="d-flex align-items-center">
+                  <%= image_tag(product.image, size: "40x40", class: "rounded") if product.image.attached? %>
                   <div class="d-block ms-3">
-                  <span class="fw-bolder fs-6"><%= category.name %></span>
+                  <span class="fw-bolder fs-6"><%= product.name %></span>
                   </div>
-              </td>
-
-              <td>
-                <span class="fw-normal d-flex align-items-center">
-                <%= time_tag(category.created_at) %>
                 </span>
               </td>
-              
+              <td>
+                <span class="fw-normal"><%= truncate(product.description, lenght: 35) %></span>
+              </td>
               <td>
                 <span class="fw-normal d-flex align-items-center">
-                <%= time_tag(category.updated_at) %>
+                $ <%= product.price %>
                 </span>
               </td>
-              
+              <td>
+                <span class="fw-normal d-flex align-items-center">
+                <%= time_tag(product.updated_at) %>
+                </span>
+              </td>
+              <td>
+                <% if product.available? %>
+                <span class="badge fw-normal bg-success">Active</span>
+                <% else %>
+                <span class="badge fw-normal bg-info">Unavailable</span>
+                <% end %>
+              </td>
               <td>
                 <div class="btn-group">
                   <button class="btn btn-link text-dark dropdown-toggle dropdown-toggle-split m-0 p-0" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -65,13 +76,17 @@
                     <span class="visually-hidden">Toggle Dropdown</span>
                   </button>
                 <div class="dropdown-menu dashboard-dropdown dropdown-menu-end mt-2 py-1">
-               
-                <%= link_to edit_category_path(category) do %>
+                <%= link_to product do %>
+                <span class="dropdown-item d-flex align-items-center">
+                <i class="bi bi-eye-fill me-2"></i> view 
+                </span>
+                <% end %>
+                <%= link_to edit_product_path(product) do %>
                 <span class="dropdown-item d-flex align-items-center" >
                   <i class="bi bi-pencil-square me-2"></i>  Edit
                 </span>
                 <% end %>
-                <%= link_to category, method: :delete, data: { confirm: "Are you sure to permanently remove #{category.name} from your Categories?" } do %>
+                <%= link_to product, method: :delete, data: { confirm: "Are you sure to permanently remove #{product.name} from your Products?" } do %>
                 <span class="dropdown-item d-flex align-items-center" >
                    <i class="bi bi-trash-fill me-2"></i> Delete
                 </span>
@@ -84,7 +99,6 @@
           </tbody>
         </table>
       </div> 
-
 
     <%= render "shared/db-footer" %>
 </main>

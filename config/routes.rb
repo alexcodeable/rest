@@ -1,15 +1,23 @@
 Rails.application.routes.draw do
-
+  
+  
   scope "dashboard" do
     get 'stats', to: 'dash#index'
     get 'customers', to: 'dash#customers'
     get 'notice', to: 'dash#notice'
     get 'transactions', to: 'dash#transactions'
+    get 'staffs', to: 'dash#staffs'
+    get 'add-staff', to: 'dash#add_staff'
+    get 'add-product', to: 'dash#add_product'
+    get 'view-products', to: 'dash#view_products'
+    resources :categories
+    
   end
+  
+  resources :products
   resources :order_items
   get 'cart', to: 'cart#show'
-  resources :categories
-  resources :products
+  resources :menus
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks'}
   devise_scope :user do
     get 'sign_up', to: 'devise/registrations#new'
@@ -27,7 +35,7 @@ Rails.application.routes.draw do
   get 'notifications', to: 'home#notifications'
   get 'contact', to: 'home#contact'
   get 'invoice', to: 'products#invoice'
-  get 'menu', to: 'products#index'
+  get 'menu', to: 'menu#index'
   get 'catering', to: 'home#catering'
 
   root 'home#index'

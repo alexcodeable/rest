@@ -1,0 +1,78 @@
+
+
+        <!-- Navigation-->
+        <header class="bg-dark py-5 mt-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="text-center text-white">
+                    <h1 class="display-4 fw-bolder">Our Menu's</h1>
+                </div>
+            </div>
+        </header>
+        <!-- Section-->
+        <section class="py-5">
+            <div class="container px-4 px-lg-5 ">
+              <div class="row mb-5">
+                <div class="col-lg-6 col-md-7 col-sm-10 mx-auto">
+                <form action="/products" class="product_search" id="product_search" accept-charset="UTF-8" method="get">
+                  <div class="input-group mb-3">
+                  <input type="search" name="q[name_cont]" id="q_name_cont" placeholder="Search Items by names or categories..." class="form-control form-control-lg" id="">
+                    <button type="submit" name="commit" class="input-group-text btn btn-dark" id="basic-addon2">Search</button>
+                  </div>
+                </form>
+                </div>
+              </div>
+                <div class="row gx-4 gx-lg-5  ">
+                  <% @products.each do |product| %>
+                    <div class=" col-lg-4 col-md-6 col-sm-12 mb-5">
+                        <div class="card h-100 bg-light shadow-sm rounded">
+                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">50% off</div>
+                            <!-- Product image-->
+                            <%= link_to product do %><%= image_tag(product.image, class: "card-img-top", size: "300x300",) if product.image.attached? %><% end %>
+                            <!-- Product details-->
+                            <div class="card-body  p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder"><%= link_to product.name, product %></h5>
+                                    <div class="d-flex justify-content-center small text-warning mb-2">
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star"></div>
+                                    </div>
+                                    <!-- Product price
+                                    <span class="text-muted text-decoration-line-through">$20.00</span>
+                                    -->
+                                    $<%= product.price %>
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center">
+                            <% if product.available? %>
+                                  <%= form_with model: @order_item, local: false do |f| %>
+                                  <%= f.hidden_field :product_id, value: product.id %>
+                                  <%= f.hidden_field :quantity, value: 1, min: 1 %>
+                                  <%= f.submit 'Add to Cart', class: "btn btn-outline-dark mt-auto" %>
+                                  <% end %> 
+                            <% else %>
+                              <span class="badge bg-warning py-2">Unavailable</span>
+                            <% end %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                  <% end %>
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+
+
+

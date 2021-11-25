@@ -1,21 +1,21 @@
   <% if notice %>
-  <div class="alert alert-success alert-dismissible fade show abs mt-3 pb-0" role="alert">
+  <center class="alert alert-success float-end alert-dismissible fade show abs mt-3 pb-0" role="alert">
   <p class="notice"><%= notice %></p>
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
+</center>
   <% end %>
 
   <% if alert %>
-<div class="alert alert-warning alert-dismissible fade show abs mt-3 pb-0" role="alert">
+<center class="alert alert-warning float-end alert-dismissible fade show abs mt-3 pb-0" role="alert">
   <p class="alert"><%= alert %></p>
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
+</center>
   <% end %>
 
   <style>
   .abs{
     position: absolute;
     z-index: 3;
-    /* margin-top: 5px */
+    margin-left: 23rem
   }
   </style>

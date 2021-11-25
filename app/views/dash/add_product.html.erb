@@ -1,0 +1,89 @@
+<%= render "shared/mobile" %>
+
+<%= render "shared/db-side" %>
+<main class="content">
+    <%= render "shared/db-nav" %>
+
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
+          <div class="d-block mb-4 mb-md-0">
+              <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
+                  <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
+                      <li class="breadcrumb-item">
+                          <a href="/dashboard/stats">
+                              <svg class="icon icon-xxs" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                          </a>
+                      </li>
+                      <li class="breadcrumb-item active" aria-current="page">New Product</li>
+                  </ol>
+              </nav>
+              <h2 class="h4">New Product</h2>
+          </div>
+          
+      </div>
+
+      <div class="card bg-white border-0 shadow py-5 px-5">
+      <div class="row">
+        <div class="col-8">
+            <%= form_with(model: @product , local: true) do |f| %>
+              <% if @product.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+                  <ul>
+                    <% product.errors.each do |error| %>
+                      <li><%= error.full_message %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              <% end %>
+            <div class="form-group mb-3">
+                <%= f.label :name, "Product Name" %>
+                <%= f.text_field :name, class: "form-control", placeholder: "Ex. Burger" %>
+            </div>
+
+            <div class="form-group mb-3">
+                <%= f.label :description %>
+                <%= f.text_area :description, class: "form-control", placeholder: "Ex. Best of Burger in Town..." %>
+            </div>
+
+            <div class="form-group mb-3">
+                <%= f.label :image %>
+                <%= f.file_field :image, class: "form-control" %>
+            </div>
+
+            <div class="form-group mb-3">
+                <%= f.label :price %>
+                <%= f.text_field :price, class: "form-control" %>
+            </div>
+
+
+
+        </div>
+        <div class="col-4">
+          <img class="rounded mb-3" src="https://dummyimage.com/450x450/dee2e6/6c757d.jpg" alt="..." />
+            <div class="form-group mb-3">
+                <%= f.label :category %>
+                <div class="form-control">
+                <%= f.select :category_id, options_from_collection_for_select(Category.all, :id, :name, @product.category)  %>
+                </div>
+            </div>
+            <div class="form-group mb-3">
+              <%= f.label :featured %>
+              <%= f.check_box :featured, class: "form-check-input me-3" %>
+            
+              <%= f.label :available %>
+              <%= f.check_box :available, class: "form-check-input" %>
+            </div>
+
+        </div>
+            <div class="form-group mb-3">
+                <%= f.submit class: "btn btn-outline-primary" %>
+            </div>
+          <% end %>
+      </div>
+      </div>
+
+
+
+    <%= render "shared/db-footer" %>
+</main>
