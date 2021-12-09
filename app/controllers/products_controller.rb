@@ -39,7 +39,6 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.save
-        flash[:notice] = "Product was successfully created."
         format.html { redirect_to ('/dashboard/view-products'), notice: "Product was successfully created." }
         format.json { render :show, status: :created, location: @product }
       else

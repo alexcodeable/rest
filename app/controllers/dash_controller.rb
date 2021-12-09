@@ -20,6 +20,9 @@ class DashController < ApplicationController
     @product = Product.new
   end
 
+  def orders
+  end
+
   def view_products
     @products = Product.all
   end

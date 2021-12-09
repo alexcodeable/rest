@@ -1,17 +1,17 @@
 Rails.application.routes.draw do
   
-  
   scope "dashboard" do
     get 'stats', to: 'dash#index'
     get 'customers', to: 'dash#customers'
     get 'notice', to: 'dash#notice'
+    get 'orders', to: 'dash#orders'
     get 'transactions', to: 'dash#transactions'
     get 'staffs', to: 'dash#staffs'
     get 'add-staff', to: 'dash#add_staff'
     get 'add-product', to: 'dash#add_product'
     get 'view-products', to: 'dash#view_products'
     resources :categories
-    
+    root "dash#index", as: :dashboard_root
   end
   
   resources :products
@@ -35,7 +35,7 @@ Rails.application.routes.draw do
   get 'notifications', to: 'home#notifications'
   get 'contact', to: 'home#contact'
   get 'invoice', to: 'products#invoice'
-  get 'menu', to: 'menu#index'
+  get 'menu', to: 'products#index'
   get 'catering', to: 'home#catering'
 
   root 'home#index'

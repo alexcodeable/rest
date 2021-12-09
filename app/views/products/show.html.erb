@@ -26,11 +26,12 @@
                 
                 <%= form_with model: @order_item, local: false do |f| %>
                 <div class="d-flex">
-                <%= f.hidden_field :product_id, value: @product.id %>
-                <%= f.number_field :quantity, value: 1, min: 1, class: "form-control text-center me-2", style: "max-width: 5rem" %>
-                <%= f.submit 'Add to Cart', class: "btn btn-outline-dark flex-shrink-0" do %>
-                        <i class="bi-cart-fill me-1"></i>
-
+                <% if @product.available? %>
+                  <%= f.hidden_field :product_id, value: @product.id %>
+                  <%= f.number_field :quantity, value: 1, min: 1, class: "form-control text-center me-2", style: "max-width: 5rem" %>
+                  <%= f.submit 'Add to Cart', class: "btn btn-outline-dark flex-shrink-0" %>
+                <% else %>
+                  <span class="badge bg-warning py-2">Unavailable</span>
                 <% end %>
                 </div>
                 <% end %> 
